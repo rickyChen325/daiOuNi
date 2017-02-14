@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>支付</title>
+	<link rel="stylesheet" type="text/css" href="../css/common/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/pay.css">
+	<link rel="shortcut icon" href="../img/common/logobg.ico">
+</head>
+<body>
+	<!-- 这里是头部 -->
+	<div id="header"></div>
+	<!-- 这里是内容 -->
+	<div id="container">
+		<div class="cartbody">
+	        <div class="bodywrap">
+	            <div class="wraphead">
+	                <div class="headwrap">确认订单信息</div>
+	            </div>
+	            <div class="wrapmain">
+	                <div class="carthead">
+	                    <div class="headtext">收货信息</div>
+	                </div>
+	                <div class="cartwrap" style="padding-top:12px;">
+	                    <div class="wrapitem"><input value="0" name="receive" type="radio" id="receive0" class="radio" checked="checked" />快递寄送（支持顺丰、邮政EMS、中通快递等）</div>
+	                </div>
+	                <div class="cartinfo" id="receiveline">
+	                    
+	                    <div class="infoitem">收货人员：<input name="deliveryname" type="text" maxlength="30" id="deliveryname" class="w200" /></div>
+	                    <div class="infoitem" id="city">联系地址：<select name="deliveryprovince" id="deliveryprovince" class="prov"></select><select name="deliverycity" id="deliverycity" class="city"></select><input name="deliveryaddress" type="text" maxlength="200" id="deliveryaddress" class="w500" /></div>
+	                    <div class="infoitem">联系电话：<input name="deliverymobile" type="text" value="" maxlength="30" id="deliverymobile" class="w200" /></div>
+	                     
+	                </div>
+	                
+	                 <div class="cartwrap" style="padding-bottom:8px;"> 
+	                    <div class="wrapitem" >留言：<textarea name="txtMemo" rows="2" cols="20" id="txtMemo" style="height:30px;width:454px;">
+						</textarea></div>
+	                </div>
+	                 <div class="cartwrap" style="padding-bottom:8px;"> 
+	                    <div class="wrapitem"><input id="txtState_Urgent" type="checkbox" name="txtState_Urgent" /><label for="txtState_Urgent">是否加急</label></div>
+	                </div>
+	               <div class="carthead" style="border-top:1px solid #CCCCCC;">
+	                    <div class="headtext">支付信息</div>
+	                </div>
+	                <div class="cartwrap" style="padding-top:12px;">
+	                    <div class="wrapitem"><input value="0" name="payment" type="radio" id="payment0" class="radio" checked="checked" />在线支付（即时到帐，支持绝大数银行借记卡及部分银行信用卡）</div>
+	                </div>
+	                <div class="cartbank" id="paymentline">
+	                    <ul>
+	                        <!--<li style="display:none;"><input name="paymenttype" type="radio" value="ALIPAY" checked="checked" /><img src="../img/pay/zfb.png" alt="" /></li>-->
+	                        <li><input name="paymenttype" type="radio" value="WEIXIN" /><img src="../img/pay/weixin.jpg" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="TENPAY" /><img src="../img/pay/cft.gif" alt="" /></li>
+	                    </ul>
+	                    <ul>
+	                        <li><input name="paymenttype" type="radio" value="ICBC_D" /><img src="../img/pay/10.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="CMB_D" /><img src="../img/pay/17.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="CCB_D" /><img src="../img/pay/2.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="ABC" /><img src="../img/pay/1.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="SPDB" /><img src="../img/pay/12.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="SDB" /><img src="../img/pay/8.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="CIB_D" /><img src="../img/pay/27.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="BOB" /><img src="../img/pay/11.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="CEB_D" /><img src="../img/pay/3.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="CMBC_D" /><img src="../img/pay/4.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="CITIC" /><img src="../img/pay/7.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="GDB_D" /><img src="../img/pay/6.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="PAB" /><img src="../img/pay/18.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="BOC_D" /><img src="../img/pay/16.gif" alt="" /></li>
+	                        <li><input name="paymenttype" type="radio" value="COMM_D" /><img src="../img/pay/5.gif" alt="" /></li>
+	                        <li class="qiye" style="display:none;"><input name="paymenttype" type="radio" value="B2B" /><img src="../img/pay/bank_qy.jpg" alt="" /></li>
+	                    </ul>
+	                </div>
+	                
+	                <div class="cartwrap" style="padding-bottom:8px;">
+	                    <div class="wrapitem"><input value="2" name="payment" type="radio" id="payment2" class="radio" />门店支付（您的收货地址附近有自提点，使用自主自提，更快更便捷）</div>
+	                </div>
+	                <div class="carthead" style="border-top:1px solid #CCCCCC;">
+	                    <div class="headtext">商品信息</div>
+	                </div>
+	            </div>
+	            <div class="wrapmain">
+	                <table>
+	                    <tr class="headrow">
+	                        <td class="img">商品</td>
+	                        <td>型号</td>
+	                      
+	                        <td class="word">刻字内容</td>
+	                        <td class="price">商城价</td>
+	                        <td class="price">优惠</td>
+	                        <td class="price">成交价</td>
+	                    </tr>
+	                    
+	                    <!-- <tr class="headrow">
+	                        <td class="img"><img width="120" height="120" src="http://www.dionly.com/upload/image/20150909/small20150909310151.XpXXXXXXXXXX_!!0-item_pic.jpg" alt="" /></td>
+	                        <td><a href="/products/4443" target="_blank">V形女戒，材质：18K DRW124443D</a></td>
+	                     
+	                        <td class="word">&nbsp;</td>
+	                        <td class="price" style="text-decoration:line-through;">￥3453.00</td>
+	                        <td class="price">￥1611.00</td>
+	                        <td class="price">1842.00</td>
+	                    </tr> -->
+	                </table>
+	               
+	                <div class="mainstat">
+	                    <div class="statleft">共<span id="totalcount" class="total">1</span>件商品
+	                    </div>
+	                    <div class="statright">商品总金额 <span>￥</span><span id="productmoney"></span> - 优惠金额 <span>￥</span><span id="discountmoney"></span> = 订单总金额 ￥<span id="totalmoney" class="total"></span>
+	                    </div>
+	                </div><input type="hidden" name="yuantotalpayment" id="yuantotalpayment" value="" />
+	                <div class="mainbutn"><span class="total" id="daijinjuan" style="display:none;"></span>应付总金额：￥<span id="totalpayment" class="total"></span>
+	                    <span class="button" id="payIt">提交订单</span>
+	                    <br/>
+	                    <br/>
+	                     <a href="login.html"><span id="errortext" style="color: red"></span></a>
+	                <div class="cartnone" style="display:none;"><input type="submit" name="postsubmit" value="Submit" id="postsubmit" /></div>
+
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- 这里是尾部 -->
+	<div id="footer"></div>
+	<script type="text/javascript" src="../lib/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="../lib/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../lib/jquery.cityselect.js"></script>
+	<script type="text/javascript" src="../js/common/common.js"></script>
+	<script type="text/javascript" src="../js/pay.js"></script>
+	<!-- <script type="text/javascript" src="../js/city.min.js"></script> -->
+	<script type="text/javascript">
+		loadHtml("common/header.html","#header");
+		loadHtml("common/footer.html","#footer");
+	</script>
+</body>
+</html>

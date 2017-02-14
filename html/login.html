@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="../css/common/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="shortcut icon" href="../img/common/logobg.ico">
+</head>
+<body>
+	<!-- 这里是头部 -->
+	<div id="header"></div>
+	<!-- 这里是内容 -->
+	<div id="container">
+		<div class="login">
+	        <div class="loginmain">
+	            <div class="mainright">
+	                <div class="loginnamehead"><a href="../html/regist.html">免费注册</a></div>
+	                <div class="loginnameinput"><input type="text" id="loginname" name="loginname" maxlength="11" class="loginname" /></div>
+	                <div class="loginnameerror" id="loginnameerror"></div>
+	                <div class="loginpassinput"><input type="password" id="loginpass" name="loginpass" maxlength="20" class="loginpass"  /></div>
+	                <div class="loginpasserror" id="loginpasserror"></div>
+	                <div class="loginautoitem">
+	                    <!-- <div class="loginautobox"><input type="checkbox" id="loginauto" name="loginauto" /><input name="redirecturl" type="hidden" id="redirecturl" value="http://www.dionly.com/" /></div>
+	                    <div class="loginautoleft">自动登录</div> -->
+	                    <div class="loginautoright"><a href="##">忘记密码？</a></div>
+	                </div>
+	                <div class="loginbutnitem"></div>
+	                <div class="loginiconitem">
+	                    <a href="##" ><img src="../img/login/Connect_logo_7.png" style="margin-bottom:12px;" /></a>
+	                    <a href="##" ><img src="../img/login/wb.gif" alt="" /></a>
+	                    <a href="##" ><img src="../img/login/zfb.gif" alt="" /></a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	</div>
+	<!-- 这里是尾部 -->
+	<div id="footer"></div>
+	<script type="text/javascript" src="../lib/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="../lib/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../js/common/common.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
+	<script type="text/javascript">
+		loadHtml("common/header.html","#header");
+		loadHtml("common/footer.html","#footer");
+	</script>
+</body>
+</html>

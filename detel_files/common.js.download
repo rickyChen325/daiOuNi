@@ -1,0 +1,650 @@
+﻿jQuery.scrollTo = function (dom) {
+    try
+    {
+        $("html,body").animate({ scrollTop: $(dom).offset().top - 3 }, 200);
+    } catch (e) { }
+};
+function ShowGoTop() {
+    $(document).ready(function () {
+        if ($(window).scrollTop() > 176) {
+            $("html,body").animate({ scrollTop: 0 }, 100);
+        } else {
+            $("#online").css({ top: 176 });
+            $("#gotop").hide();
+        }
+    });
+}
+function ShowOnline() {
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 176) {
+                $("#online").css({ top: 13 });
+                $("#gotop").show();
+            } else {
+                $("#online").css({ top: 176 });
+                $("#gotop").hide();
+            }
+        });
+        if ($.cookie("dionlyline") == null || $.cookie("dionlyline") == "0") {
+            $("#onlineshow").show();
+            $("#onlinehide").hide();
+        } else {
+            $("#onlineshow").hide();
+            $("#onlinehide").show();
+        }
+    });
+}
+function ShowOnlineQQ() {
+    if ($.cookie("dionlyline") == null || $.cookie("dionlyline") == "0") {
+        $("#onlineshow").hide();
+        $("#onlinehide").show();
+        $.cookie("dionlyline", "1", { path: "/" });
+    } else {
+        $("#onlineshow").show();
+        $("#onlinehide").hide();
+        $.cookie("dionlyline", "0", { path: "/" });
+    }
+}
+function SearchOnBlur() {
+    $(document).ready(function () {
+        if ($.trim($("#keyword").val()).length == 0) {
+            $("#keyword").val("请输入型号或者名称");
+        }
+    });
+}
+function SearchOnFocus() {
+    $(document).ready(function () {
+        if ($.trim($("#keyword").val()) == "请输入型号或者名称") {
+            $("#keyword").val("");
+        }
+    });
+}
+function SearchDoSubmit() {
+    $(document).ready(function () {
+        if ($.trim($("#keyword").val()).length == 0) {
+            $("#keyword").focus();
+            return false;
+        } else if ($.trim($("#keyword").val()) == "请输入型号或者名称") {
+            $("#keyword").focus();
+            return false;
+        } else {
+            window.location.href = "/search.aspx?key=" + encodeURIComponent($.trim($("#keyword").val()));
+        }
+    });
+}
+function SearchHotSubmit(eid) {
+    $(document).ready(function () {
+        $("#keyword").val($(eid).html());
+        SearchDoSubmit();
+    });
+}
+function ShowTopMenuHover(type) {
+    $(document).ready(function () {
+        if (type == 1) {
+            $("#topmenu .topmenu>li").addClass("menuhover");
+            $("#topmenu ul li ul").addClass("submenufixed");
+        } else {
+            $("#topmenu ul li").hover(function () {
+                $(this).addClass("menuhover").children("ul").show();
+            }, function () {
+                $(this).removeClass("menuhover").children("ul").hide();
+            });
+        }
+    });
+}
+//function ShowBaikeMenuHover(type) {
+//    $(document).ready(function () {
+//        $("#baikemenu ul li").hover(function () {
+//            $(this).addClass("menuhover").children("ul").show();
+//        }, function () {
+//            $(this).removeClass("menuhover").children("ul").hide();
+//        });
+//    });
+//}
+function ShowTopCityDialog() {
+    $(document).ready(function () {
+        $.ajax({
+            url: "/handler/city.ashx",
+            data: { ajax: "listcity" },
+            success: function (data) {
+                $.Zebra_Dialog(data, {
+                    'type': false, 'width': 660, 'title': '切换体验中心', 'buttons': false
+                });
+            }
+        });
+    });
+}
+function ResetTopCityDialog(agentid) {
+    $(document).ready(function () {
+        $.ajax({
+            url: "/handler/city.ashx",
+            data: { ajax: "resetcity", agentid: agentid },
+            dataType: "json",
+            success: function (json) {
+                $(".ZebraDialog").remove();
+                $(".ZebraDialogOverlay").remove();
+                var url = window.location.href;
+                if (url.indexOf("?") != -1) {
+                    var link = url.split("?");
+                    url = link[0];
+                    var para = link[1];
+                    if (para.indexOf("&") != -1) {
+                        var pars = para.split("&");
+                        for (var i = 0; i < pars.length; i++) {
+                            var par = pars[i].split("=");
+                            if (par[0].toLowerCase() != "areacity") {
+                                url += (url.indexOf("?") == -1 ? "?" : "&") + par[0] + "=" + par[1];
+                            }
+                        }
+                    } else {
+                        var par = para.split("=");
+                        if (par[0].toLowerCase() != "areacity") {
+                            url += "?" + par[0] + "=" + par[1];
+                        }
+                    }
+                }
+                window.location.href = url;
+            }
+        });
+    });
+}
+function ShowAgentCityShop(city) {
+    $(document).ready(function () {
+        var area = $("#cityareas").children();
+        for (var i = 0; i < area.length; i++) {
+            if ($(area[i]).attr("id") == city) {
+                $(area[i]).removeClass().addClass("name select");
+                $("#" + $(area[i]).attr("id").replace("city_", "info_")).show();
+                $("#cityshops").attr("src", "/images/footer/shops/" + city.replace("city_", "") + ".jpg");
+            } else {
+                $("#" + $(area[i]).attr("id").replace("city_", "info_")).hide();
+                $(area[i]).removeClass().addClass("name");
+            }
+        }
+    });
+}
+function GetBrowser() {
+    var b = false;
+    var u = navigator.userAgent;
+    var c = $.cookie("dionlymobi");
+    if (c != null) {
+        if (c == 1) {
+            b = false;
+        } else {
+            b = (!!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/IEMobile/) || !!u.match(/Windows Phone/) || !!u.match(/Android/) || !!u.match(/iPhone/) || !!u.match(/iPad/));
+        }
+    } else {
+        b = (!!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/IEMobile/) || !!u.match(/Windows Phone/) || !!u.match(/Android/) || !!u.match(/iPhone/) || !!u.match(/iPad/));
+    }
+    return b;
+}
+function SetBrowser(url) {
+    $(document).ready(function () {
+        if (GetBrowser()) {
+            window.location.href = url;
+        }
+    });
+}
+
+/*--------------------------------------------*/
+
+
+
+function ShowUserDialogLayerOut() {
+    $.ajax({
+        url: "/handler/user.ashx",
+        data: { ajax: "userlogout" },
+        success: function (data) {
+            if (data == 1) {
+                $.Zebra_Dialog('<div class="ZebraAlert">退出登录成功，欢迎您下次光临！</div>', {
+                    'type': false, 'title': '退出提示', 'auto_close': 1000,
+                    'onClose': function (caption) {
+                        var url = window.location.href;
+                        if (url.length > 0) {
+                            if (url.indexOf("login.shtml") != -1 || url.indexOf("reg.shtml") != -1 || url.indexOf("forget.shtml") != -1) {
+                                url = "/";
+                            }
+                        } else {
+                            url = "/";
+                        }
+                        window.location.href = url;
+                    }
+                });
+            } else {
+                $.Zebra_Dialog('<div class="ZebraAlert">退出登录失败，请刷新页面重新退出！</div>', {
+                    'type': false, 'title': '退出提示',
+                    'onClose': function (caption) {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+}
+
+
+/*--------------------------------------------*/
+
+
+function RegUserNameBlur() {
+    $(document).ready(function () {
+        if ($.trim($("#regusername").val()).length == 0) {
+            $("#regusername").addClass("regusername");
+        } else {
+            var ismobile = /^(?:13\d|11\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+            var regusername = $.trim($("#regusername").val());
+            if (!ismobile.test(regusername)) {
+                $("#regusernameerror").html("请输入正确的手机号码");
+                return false;
+            } else {
+                $.ajax({
+                    url: "/handler/user.ashx",
+                    data: { ajax: "usercheck", username: regusername },
+                    success: function (data) {
+                        if (data == 1) {
+                            $("#regusernameerror").html("您输入的手机号码已经存在，<a href=\"javascript:void(0);\" onclick=\"ShowUserDialogLayerLogin(0);\">请登录</a>");
+                        }
+                    }
+                });
+            }
+        }
+    });
+}
+function RegUserNameFocus() {
+    $(document).ready(function () {
+        $("#regusername").removeClass("regusername");
+        $("#regusernameerror").html("");
+    });
+}
+function RegUserCodeSend() {
+    $(document).ready(function () {
+        if ($("#regusernameerror").html().length == 0) {
+            var ismobile = /^(?:13\d|11\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+            var regusername = $.trim($("#regusername").val());
+            if (!ismobile.test(regusername)) {
+                $("#regusernameerror").html("请输入正确的手机号码");
+                return false;
+            } else {
+                CountLeftSecond = 60;
+                CountIntervalId = null;
+                $("#regsendcode").addClass("dialogreggray").attr("onclick", "return false;");
+                CountIntervalId = setInterval("RegUserCodeDown()", 1000);
+                RegUserCodeAjax(regusername);
+            }
+        }
+    });
+}
+function RegUserCodeDown() {
+    if (CountLeftSecond <= 0) {
+        $("#regsendcode").html("获取短信验证码");
+        $("#regsendcode").removeClass("dialogreggray").attr("onclick", "RegCodeSend();");
+        clearInterval(CountIntervalId);
+    } else {
+        CountLeftSecond--;
+        $("#regsendcode").html("获取短信验证码[" + CountLeftSecond + "]");
+    }
+}
+function RegUserCodeAjax(regusername) {
+    $.ajax({
+        url: "/handler/user.ashx",
+        data: { ajax: "userregusercode", regusername: regusername },
+        success: function (data) {
+            if (data == 1) {
+                $("#regusernameerror").html("您输入的手机号码已经存在，<a href=\"javascript:void(0);\" onclick=\"ShowUserDialogLayerLogin(0);\">请登录</a>");
+            } else if (data == 0) {
+                $("#regusernameerror").html("您输入的手机号码不正确，发送失败");
+                return false;
+            }
+        }
+    });
+}
+function RegUserCodeBlur() {
+    $(document).ready(function () {
+        if ($.trim($("#regusercode").val()).length == 0) {
+            $("#regusercode").addClass("regusercode");
+        } else {
+            var isnumber = /^\d{6}$/;
+            var regusercode = $.trim($("#regusercode").val());
+            if (!isnumber.test(regusercode)) {
+                $("#regusercodeerror").html("短信验证为6位数字");
+                return false;
+            } else {
+                $.ajax({
+                    url: "/handler/user.ashx",
+                    data: { ajax: "codecheck", codetype: 0, codemobile: $.trim($("#regusername").val()), codenumber: regusercode },
+                    success: function (data) {
+                        if (data == 0) {
+                            $("#regusercodeerror").html("您输入的短信验证码不正确，请重试");
+                        }
+                    }
+                });
+            }
+        }
+    });
+}
+function RegUserCodeFocus() {
+    $(document).ready(function () {
+        $("#regusercode").removeClass("regusercode");
+        $("#regusercodeerror").html("");
+    });
+}
+function RegUserPassBlur() {
+    $(document).ready(function () {
+        if ($("#reguserpass").val().length == 0) {
+            $("#reguserpass").addClass("reguserpass");
+        } else {
+            var reguserpass = $.trim($("#reguserpass").val());
+            if (reguserpass.length < 6) {
+                $("#reguserpasserror").html("设置密码为6-20位必须包含字母和数字");
+                return false;
+            }
+            var isletternumber = /^([A-Za-z]+[0-9]+)|([0-9]+[A-Za-z]+)$/;
+            if (!isletternumber.test(reguserpass)) {
+                $("#reguserpasserror").html("设置密码为6-20位必须包含字母和数字");
+                return false;
+            }
+        }
+    });
+}
+function RegUserPassFocus() {
+    $(document).ready(function () {
+        $("#reguserpass").removeClass("reguserpass");
+        $("#reguserpasserror").html("");
+    });
+}
+function RegPassWordBlur() {
+    $(document).ready(function () {
+        if ($("#regpassword").val().length == 0) {
+            $("#regpassword").addClass("reguserpass");
+        } else {
+            if ($.trim($("#reguserpass").val()) != $.trim($("#regpassword").val())) {
+                $("#regpassworderror").html("确认密码与设置密码不一致");
+                return false;
+            }
+        }
+    });
+}
+function RegPassWordFocus() {
+    $(document).ready(function () {
+        $("#regpassword").removeClass("reguserpass");
+        $("#regpassworderror").html("");
+    });
+}
+function ShowUserDialogLayerReg() {
+    $(document).ready(function () {
+        $(".ZebraDialog").remove();
+        $(".ZebraDialogOverlay").remove();
+        var CountLeftSecond = 0;
+        var CountIntervalId = null;
+        var html = "<div id=\"userdialogreg\" class=\"userdialogreg\">";
+        html += "<div class=\"dialogreghead\" onclick=\"ShowUserDialogLayerLogin(0);\">会员登录</div>";
+        html += "<div class=\"dialogreguser\"><input type=\"text\" id=\"regusername\" name=\"regusername\" maxlength=\"11\" class=\"regusername\" onblur=\"RegUserNameBlur();\" onfocus=\"RegUserNameFocus();\" onkeydown=\"if(event.keyCode==13){AjaxUserDialogLayerReg();}\" /></div>";
+        html += "<div class=\"dialogregusererror\" id=\"regusernameerror\"></div>";
+        html += "<div class=\"dialogregcode\"><input type=\"text\" id=\"regusercode\" name=\"regusercode\" maxlength=\"6\" class=\"regusercode\" onblur=\"RegUserCodeBlur();\" onfocus=\"RegUserCodeFocus();\" onkeydown=\"if(event.keyCode==13){AjaxUserDialogLayerReg();}\" /></div>";
+        html += "<div class=\"dialogregsend\" id=\"regsendcode\" onclick=\"RegUserCodeSend();\">获取短信验证码</div>";
+        html += "<div class=\"dialogregcodeerror\" id=\"regusercodeerror\"></div>";
+        html += "<div class=\"dialogregpass\"><input type=\"password\" id=\"reguserpass\" name=\"reguserpass\" maxlength=\"20\" class=\"reguserpass\" onblur=\"RegUserPassBlur();\" onfocus=\"RegUserPassFocus();\" onkeydown=\"if(event.keyCode==13){AjaxUserDialogLayerReg();}\" /></div>";
+        html += "<div class=\"dialogregpasserror\" id=\"reguserpasserror\"></div>";
+        html += "<div class=\"dialogregpass\"><input type=\"password\" id=\"regpassword\" name=\"regpassword\" maxlength=\"20\" class=\"reguserpass\" onblur=\"RegPassWordBlur();\" onfocus=\"RegPassWordFocus();\" onkeydown=\"if(event.keyCode==13){AjaxUserDialogLayerReg();}\" /></div>";
+        html += "<div class=\"dialogregpasserror\" id=\"regpassworderror\"></div>";
+        html += "<div class=\"dialogregread\"><div class=\"regreadbox\"><input type=\"checkbox\" id=\"reguserread\" name=\"reguserread\" onclick=\"$('#reguserreaderror').html('');\" /></div><div class=\"regreadleft\">我已阅读并同意《<a href=\"javascript:void(0);\" id=\"regagreeservice\" onclick=\"ShowUserDialogLayerAgree();\">戴欧妮珠宝用户服务协议</a>》</div></div>";
+        html += "<div class=\"dialogregreaderror\" id=\"reguserreaderror\"></div>";
+        html += "<div class=\"dialogregbutn\"><div class=\"loginbutnsubmit\" onclick=\"AjaxUserDialogLayerReg();\"></div></div>";
+        html += "<div class=\"dialogregicon\"><a href=\"javascript:void(0);\" onclick=\"DialogOpenQQLogin();\"><img src=\"/images/dialog/qq.png\" alt=\"qq\" /></a><a href=\"javascript:void(0);\" onclick=\"DialogOpenWXLogin();\"><img src=\"/images/dialog/wx.png\" alt=\"wx\" style=\"display:none;\" /></a><a href=\"javascript:void(0);\" onclick=\"DialogOpenWBLogin();\"><img src=\"/images/dialog/wb.png\" alt=\"wb\" /></a><a href=\"javascript:void(0);\" onclick=\"DialogOpenZFBLogin();\"><img src=\"/images/dialog/zfb.png\" alt=\"zfb\" /></a></div>";
+        html += "</div>";
+        $.Zebra_Dialog(html, {
+            'type': false,
+            'buttons': false,
+            'custom_class': 'ZebraDialogOnly',
+            'width': 422
+        });
+        $('a[regagreeservice]').live('click', function (e) {
+            e.preventDefault();
+            $('#' + $(this).attr('regagreeservice')).reveal($(this).data());
+        });
+    });
+}
+function AjaxUserDialogLayerReg() {
+    $(document).ready(function () {
+        var ismobile = /^(?:13\d|11\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+        var regusername = $.trim($("#regusername").val());
+        if (!ismobile.test(regusername)) {
+            $("#regusernameerror").html("请输入正确的手机号码");
+            return false;
+        }
+        var regusercode = $.trim($("#regusercode").val());
+        if (regusercode.length != 6) {
+            $("#regusercodeerror").html("请输入正确的短信验证");
+            return false;
+        }
+        var reguserpass = $.trim($("#reguserpass").val());
+        if (reguserpass.length < 6) {
+            $("#reguserpasserror").html("设置密码为6-20位必须包含字母和数字");
+            return false;
+        }
+        var isletternumber = /^([A-Za-z]+[0-9]+)|([0-9]+[A-Za-z]+)$/;
+        if (!isletternumber.test(reguserpass)) {
+            $("#reguserpasserror").html("设置密码为6-20位必须包含字母和数字");
+            return false;
+        }
+        var regpassword = $.trim($("#regpassword").val());
+        if (regpassword != reguserpass) {
+            $("#regpassworderror").html("确认密码与设置密码不一致");
+            return false;
+        }
+        if (!$("#reguserread").is(":checked")) {
+            $("#reguserreaderror").html("请先阅读并同意《戴欧妮珠宝用户服务协议》");
+            return false;
+        }
+        $.ajax({
+            url: "/handler/user.ashx",
+            data: { ajax: "userreg", regusername: regusername, regusercode: regusercode, reguserpass: reguserpass, regpassword: regpassword },
+            success: function (data) {
+                if (data == 3) {
+                    $("#regusernameerror").html("您输入的手机号码已经存在，<a href=\"javascript:void(0);\" onclick=\"ShowUserDialogLayerLogin(0);\">请登录</a>");
+                } else if (data == 2) {
+                    $("#regusercodeerror").html("您输入的短信验证码不正确，请重试");
+                } else if (data == 1) {
+                    $(".ZebraDialog").remove();
+                    $(".ZebraDialogOverlay").remove();
+                    $.Zebra_Dialog('<div class="ZebraAlert">' + regusername + '，欢迎光临戴欧妮珠宝网！</div>', {
+                        'type': false, 'title': '注册提示', 'auto_close': 1000,
+                        'onClose': function (caption) {
+                            window.location.reload();
+                        }
+                    });
+                } else {
+                    $(".ZebraDialog").remove();
+                    $(".ZebraDialogOverlay").remove();
+                    $.Zebra_Dialog('<div class="ZebraAlert">注册失败，请刷新页面重新注册！</div>', {
+                        'type': false, 'title': '注册提示',
+                        'onClose': function (caption) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            }
+        });
+    });
+}
+function ShowUserDialogLayerAgree() {
+    new Boxy("<p style=\"padding-top:10px;\">欢迎您注册成为戴欧妮官方主站会员！请仔细阅读下面的协议，只有接受协议才能继续进行注册。</p><p>一、有效性：</p><p>这些交易条件的条款适用于由戴欧妮为您提供的商品销售服务。戴欧妮有权在必要时修改服务条款，任何修正条款的发生，戴欧妮官方网站都将会即时公布。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向戴欧妮咨询。 无论您事实上是否在注册之前认真阅读了本服务协议，只要您按照戴欧妮注册程序成功注册为会员，您的行为仍然表示您同意并签署了本服务协议。</p><p>二、戴欧妮和您之间的契约：</p><p>戴欧妮将尽最大努力保证您所购商品与网站上公布的价格一致，但价目表和声明并不构成要约。有权在发现了购物程序上显现的商品及订单的明显错误或缺货的情况下，单方面撤回任何契约，同时保留对商品订购数量的限制权。在下订单的同时，您也同时承认了您已经达到购买这些商品的法定年龄，并将对您在订单中提供的所有信息的真实性负责。会员需要同意：提供及时、详尽及准确的个人资料；同意接收来自戴欧妮的信息。会员应妥善保管自己的帐号和密码，并对其帐号中的所有活动和事件负全部责任。会员同意若发现任何非法使用会员帐号或安全漏洞的情况，请立即戴欧妮。</p><p>三、价格变化和缺货可能性：</p><p>商品的定价和可获性都在戴欧妮网站上指明，商品的价格都包含了增值税。这类信息将随时更改且不发任何通知。如果发生了意外情况，在确认了您的订单后，由于供应商提价，税额变化引起的价格变化，或是由于网站的错误等造成戴欧妮官网价格变化，戴欧妮有权单方面取消您的订单。</p><p>四、邮件和短信服务：</p><p>戴欧妮保留通过邮件和短信的形式，对本网站注册、购物会员发送订单信息、促销活动等告知服务的权利。如果您在戴欧妮成功注册、购物，表明您已默示接受此项服务。如果您不想接收来自戴欧妮的邮件和短信，请按相应方式回复短信取消或在邮件下方输入您的邮箱地址自助完成退阅；您也可以向戴欧妮官网客服提出退阅申请，并注明您的邮箱地址或手机号，戴欧妮客服会在收到邮件后为您办理退阅。</p><p>五、送货：</p><p>戴欧妮将会把商品送到您所指定的送货地址。所有在戴欧妮官方网站上列出的送货时间为参考时间，参考时间的计算是根据库存状况、正常的处理过程和送货时间、送货地点的基础上估计得出的。</p><p>六、条款的可执行性：</p><p>如果出于任何原因，这些条款及其条件的部分不能得以执行，其他条款及其条件的有效性将不受影响。</p><p>七、适用的法律和管辖权：</p><p>您和戴欧妮之间的契约将适用中华人民共和国的法律，所有的争端将诉诸于戴欧妮办公所在地的人民法院。</p>", { title: "戴欧妮珠宝用户服务协议" });
+}
+
+function LoginUserNameBlur() {
+    $(document).ready(function () {
+        if ($.trim($("#loginusername").val()).length == 0) {
+            $("#loginusername").addClass("loginusername");
+        } else {
+            var ismobile = /^(?:13\d|11\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+            var loginusername = $.trim($("#loginusername").val());
+            if (!ismobile.test(loginusername)) {
+                $("#loginusernameerror").html("请输入正确的手机号码");
+                return false;
+            } else {
+                $.ajax({
+                    url: "/handler/user.ashx",
+                    data: { ajax: "usercheck", username: loginusername },
+                    success: function (data) {
+                        if (data == 0) {
+                            $("#loginusernameerror").html("您输入的手机号码不存在，<a href=\"/reg.shtml\" >请先注册</a>");
+                        }
+                    }
+                });
+            }
+        }
+    });
+}
+function LoginUserNameFocus() {
+    $(document).ready(function () {
+        $("#loginusername").removeClass("loginusername");
+        $("#loginusernameerror").html("");
+    });
+}
+function LoginUserPassBlur() {
+    $(document).ready(function () {
+        if ($("#loginuserpass").val().length == 0) {
+            $("#loginuserpass").addClass("loginuserpass");
+        } else {
+            var loginuserpass = $.trim($("#loginuserpass").val());
+            if (loginuserpass.length < 6) {
+                $("#loginuserpasserror").html("登录密码为6-20位必须包含字母和数字");
+                return false;
+            }
+            var isletternumber = /^([A-Za-z]+[0-9]+)|([0-9]+[A-Za-z]+)$/;
+            if (!isletternumber.test(loginuserpass)) {
+                $("#loginuserpasserror").html("登录密码为6-20位必须包含字母和数字");
+                return false;
+            }
+        }
+    });
+}
+function LoginUserPassFocus() {
+    $(document).ready(function () {
+        $("#loginuserpass").removeClass("loginuserpass");
+        $("#loginuserpasserror").html("");
+    });
+}
+function ShowUserDialogLayerLogin(type) {
+    $(document).ready(function () {
+        if (typeof (type) != "undefined") {
+            $(".ZebraDialog").remove();
+            $(".ZebraDialogOverlay").remove();
+        }
+        var html = "<div id=\"userdialoglogin\" class=\"userdialoglogin\">";
+        html += "<div class=\"dialogloginhead\" ><a href=\"/reg.shtml\" >免费注册</a></div>";
+        html += "<div class=\"dialogloginuser\"><input type=\"text\" id=\"loginusername\" name=\"loginusername\" maxlength=\"11\" class=\"loginusername\" onblur=\"LoginUserNameBlur();\" onfocus=\"LoginUserNameFocus();\" onkeydown=\"if(event.keyCode==13){AjaxUserDialogLayerLogin();}\" /></div>";
+        html += "<div class=\"dialogloginusererror\" id=\"loginusernameerror\"></div>";
+        html += "<div class=\"dialogloginpass\"><input type=\"password\" id=\"loginuserpass\" name=\"loginuserpass\" maxlength=\"20\" class=\"loginuserpass\" onblur=\"LoginUserPassBlur();\" onfocus=\"LoginUserPassFocus();\" onkeydown=\"if(event.keyCode==13){AjaxUserDialogLayerLogin();}\" /></div>";
+        html += "<div class=\"dialogloginpasserror\" id=\"loginuserpasserror\"></div>";
+        html += "<div class=\"dialogloginauto\"><div class=\"loginautobox\"><input type=\"checkbox\" id=\"loginuserauto\" name=\"loginuserauto\" /></div><div class=\"loginautoleft\">自动登录</div><div class=\"loginautoright\"><a href=\"/forget.shtml?redirecturl=" + encodeURIComponent(window.location.href) + "\">忘记密码？</a></div></div>";
+        html += "<div class=\"dialogloginbutn\"><div class=\"loginbutnsubmit\" onclick=\"AjaxUserDialogLayerLogin();\"></div></div>";
+        html += "<div class=\"dialogloginicon\"><a href=\"javascript:void(0);\" onclick=\"DialogOpenQQLogin();\"><img src=\"/images/dialog/qq.png\" alt=\"qq\" /></a><a href=\"javascript:void(0);\" onclick=\"DialogOpenWXLogin();\"><img src=\"/images/dialog/wx.png\" alt=\"wx\" style=\"display:none;\" /></a><a href=\"javascript:void(0);\" onclick=\"DialogOpenWBLogin();\"><img src=\"/images/dialog/wb.png\" alt=\"wb\" /></a><a href=\"javascript:void(0);\" onclick=\"DialogOpenZFBLogin();\"><img src=\"/images/dialog/zfb.png\" alt=\"zfb\" /></a></div>";
+        html += "</div>";
+        $.Zebra_Dialog(html, {
+            'type': false,
+            'buttons': false,
+            'custom_class': 'ZebraDialogOnly',
+            'width': 412
+        });
+    });
+}
+function AjaxUserDialogLayerLogin() {
+    $(document).ready(function () {
+        var ismobile = /^(?:13\d|11\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+        var loginusername = $.trim($("#loginusername").val());
+        if (!ismobile.test(loginusername)) {
+            $("#loginusernameerror").html("请输入正确的手机号码");
+            return false;
+        }
+        var loginuserpass = $.trim($("#loginuserpass").val());
+        if (loginuserpass.length < 6) {
+            $("#loginuserpasserror").html("登录密码为6-20位必须包含字母和数字");
+            return false;
+        }
+        var isletternumber = /^([A-Za-z]+[0-9]+)|([0-9]+[A-Za-z]+)$/;
+        if (!isletternumber.test(loginuserpass)) {
+            $("#loginuserpasserror").html("登录密码为6-20位必须包含字母和数字");
+            return false;
+        }
+        var loginuserauto = $("#loginuserauto").is(":checked") ? 1 : 0;
+        $.ajax({
+            url: "/handler/user.ashx",
+            data: { ajax: "userlogin", loginusername: loginusername, loginuserpass: loginuserpass, loginuserauto: loginuserauto },
+            success: function (data) {
+                if (data == 2) {
+                    $(".ZebraDialog").remove();
+                    $(".ZebraDialogOverlay").remove();
+                    $.Zebra_Dialog('<div class="ZebraAlert">' + loginusername + '，欢迎光临戴欧妮珠宝网！</div>', {
+                        'type': false, 'title': '登录提示', 'auto_close': 1000,
+                        'onClose': function (caption) {
+                            window.location.reload();
+                        }
+                    });
+                } else if (data == 1) {
+                    $("#loginuserpasserror").html("您输入的登录密码不正确，请重试");
+                } else {
+                    $("#loginusernameerror").html("您输入的手机号码不存在，<a href=\"/reg.shtml\" >请先注册</a>");
+                }
+            }
+        });
+    });
+}
+
+function DialogOpenQQLogin() {
+    window.location.href = "/partner/qqlogin.aspx?redirecturl=" + encodeURIComponent(window.location.href);
+}
+function DialogOpenWXLogin() {
+    window.location.href = "/partner/weixinlogin.aspx?redirecturl=" + encodeURIComponent(window.location.href);
+}
+function DialogOpenWBLogin() {
+    window.location.href = "/partner/weibologin.aspx?redirecturl=" + encodeURIComponent(window.location.href);
+}
+function DialogOpenZFBLogin() {
+    window.location.href = "/partner/alipaylogin.aspx?redirecturl=" + encodeURIComponent(window.location.href);
+}
+
+function ShowColorSelect(id) {
+    $(document).ready(function () {
+        for (var i = 1; i <= 7; i++)
+        {
+            $("#color_" + i).removeClass("itemshapeselect");
+            $("#color_" + i).html("<img src='/images/home/line2/color/" + i + ".png' />");
+        }
+		
+		if ($("#color_" + id).hasClass("itemshapeselect")) {
+            $("#color_" + id).removeClass("itemshapeselect");
+            $("#color_" + id).html("<img src='/images/home/line2/color/" + id + ".png' />");
+        } else {
+            $("#color_" + id).addClass("itemshapeselect");
+            $("#color_" + id).html("<img src='/images/home/line2/color/" + id + "_" + id + ".png' />");
+        }
+        ShowShapeValue();
+    });
+}
+function ShowShapeValue() {
+    $(document).ready(function () {
+        var val = "";
+        for (var i = 1; i <= 7; i++) {
+            if ($("#color_" + i.toString()).hasClass("itemshapeselect")) {
+                val += (val.length > 0 ? "," : "") + i.toString();
+            }
+        }
+        $("#color").val(val);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/common/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/regist.css">
+    <link rel="shortcut icon" href="../img/common/logobg.ico">
+</head>
+<body>
+	<!-- 这里是头部 -->
+	<div id="header"></div>
+	<!-- 这里是内容 -->
+	<div id="container">
+		 <div class="reg">
+	        <div class="regmain">
+	            <div class="mainright">
+	                <div class="reguserhead"><a href="../html/login.html">会员登录</a></div>
+	                <div class="regnameinput">
+	                    <div class="inputright"><input type="text" id="regname" name="regname" maxlength="11" class="regname" placeholder="11位数字" /></div>
+	                </div>
+	                <div class="regnameerror" id="regnameerror"></div>
+	                <div class="regimgcodeinput">
+	                    <div class="inputright">
+	                    	<input type="text" id="regimgcode" name="regimgcode" maxlength="4" class="regimgcode"/>
+	                    </div>
+	                    <div class="inputreset" id="inputreset">
+	                    	<span id="idcode"></span>
+	                    </div>
+	                    <!-- <div class="resetimgbtn" id="resetimgbtn" ></div>         -->
+	                </div>
+	                <div class="regimgcodeerror" id="regimgcodeerror"></div>
+	                <div class="regcodeinput">
+	                    <div class="inputright">
+	                    	<input type="text" id="regcode" name="regcode" maxlength="6" class="regcode" placeholder="6位数字" />
+	                    </div>
+	                    <div class="inputsend" id="regsend">获取验证码</div>
+	                </div>
+	                <div class="regcodeerror" id="regcodeerror"></div>
+	                <div class="regpassinput">
+	                    <div class="inputright"><input type="password" id="regpass" name="regpass" maxlength="20" class="regpass" placeholder="6-20位必须包含字母或数字" /></div>
+	                </div>
+	                <div class="regpasserror" id="regpasserror"></div>
+	                <div class="regpassinput">
+	                    <div class="inputright"><input type="password" id="regword" name="regword" maxlength="20" class="regpass"
+	                    placeholder="6-20位必须包含字母数字"/></div>
+	                </div>
+	                <div class="regworderror" id="regworderror"></div>
+	                <div class="regreaditem">
+	                    <div class="regreadbox"><input type="checkbox" checked=checked id="regread" name="regread"/><input name="redirecturl" type="hidden" id="redirecturl" value="http://www.dionly.com/" /></div>
+	                    <div class="regreadleft">我已阅读并同意《<a href="#" id="regagreeservice">戴欧妮珠宝用户服务协议</a>》</div>
+	                </div>
+	                <div class="regreaderror" id="regreaderror"></div>
+	                <div class="regbutnitem" id="regbutnitem"></div>
+	                <div class="regiconitem">
+	                    <a href="#"><img src="../img/regist/Connect_logo_7.png" style="margin-bottom:12px;" /></a>
+	                    <a href="#"><img src="../img/regist/wb.gif" alt="" /></a>
+	                    <a href="#"><img src="../img/regist/zfb.gif" alt="" /></a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+		
+	</div>
+	<!-- 这里是尾部 -->
+	<div id="footer"></div>
+	
+	<script type="text/javascript" src="../lib/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="../lib/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../lib/jquery.idcode.js"></script>
+	<script type="text/javascript" src="../js/common/common.js"></script>
+
+	<script type="text/javascript" src="../js/regist.js"></script>
+	
+	<script type="text/javascript">
+		loadHtml("common/header.html","#header");
+		loadHtml("common/footer.html","#footer");
+	</script>
+	<!-- <script type="text/javascript" src="../js/common/header.js"></script>
+	<script type="text/javascript" src="../js/common/footer.js"></script> -->
+</body>
+</html>

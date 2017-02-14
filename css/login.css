@@ -1,0 +1,38 @@
+.login { width: 100%; height: 588px; 
+	background: #FBEDEC url(../img/login/login.jpg) no-repeat center center; }
+.login .loginmain { margin: 0 auto; width: 1180px; }
+.login .loginmain .mainright { float: right; width: 518px; height: 588px; }
+.login .loginmain .loginnamehead { float: left; margin-top: 112px; 
+	width: 385px; height: 25px; font-size: 14px; text-align: right; }
+.login .loginmain .loginnamehead a { color: #DB3962; }
+.login .loginmain .loginnameinput { float: left; margin-top: 41px;
+ width: 390px; height: 30px; }
+.login .loginmain .loginnameinput input { margin-left: 150px;
+ width: 150px; padding: 1px 3px; border: none; height: 28px; line-height: 28px; 
+ background: #FFFFFF; font-size: 14px; outline: none;}
+.login .loginmain .loginnameerror { float: left; margin-top: 3px; 
+	margin-left: 150px; width: 200px; height: 18px; color: #DB3962; }
+.login .loginmain .loginnameerror a { color: #DB3962; }
+.login .loginmain .loginpassinput { float: left; margin-top: 3px; 
+	width: 390px; height: 30px; }
+.login .loginmain .loginpassinput input { margin-left: 150px;
+ width: 150px; padding: 1px 3px; border: none; height: 28px; 
+ line-height: 28px; background: #FFFFFF; font-size: 14px;outline: none; }
+.login .loginmain .loginpasserror { float: left; margin-top: 3px; 
+	margin-left: 150px; width: 243px; height: 18px; color: #DB3962; }
+.login .loginmain .loginautoitem { float: left; margin-top: 2px; 
+	width: 390px; height: 35px; font-size: 14px; }
+.login .loginmain .loginautoitem .loginautobox { float: left; 
+	margin-left: 55px; width: 22px; height: 24px; }
+.login .loginmain .loginautoitem .loginautobox input { position: relative; }
+.login .loginmain .loginautoitem .loginautoleft { float: left;
+ width: 192px; height: 24px; }
+.login .loginmain .loginautoitem .loginautoright { float: left;margin-left: 59px;
+ width: 70px; height: 24px; }
+.login .loginmain .loginbutnitem { float: left; margin-left: 60px;
+ width: 321px; height: 41px; 
+ background: url(../img/login/loginbutn.png) no-repeat; cursor: pointer; }
+.login .loginmain .loginiconitem { float: left; margin-left: 49px; 
+	margin-top: 46px; width: 330px; height: 75px; text-align: center; }
+.login .loginmain .loginiconitem img { margin: 0 9px; border: none; 
+	cursor: pointer; }

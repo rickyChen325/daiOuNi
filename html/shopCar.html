@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<link rel="stylesheet" type="text/css" href="../css/common/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/shopCar.css">
+	<link rel="shortcut icon" href="../img/common/logobg.ico">
+</head>
+<body>
+	<!-- 这里是头部 -->
+	<div id="header"></div>
+	<!-- 这里是内容 -->
+	<div id="container">
+		  <div class="cartbody">
+	        <div class="bodywrap">
+	            <div class="wraphead">
+	                <div class="headwrap">我的珠宝箱</div>
+	            </div>
+	            <div id="cartcart" class="wrapmain">
+	                <table>
+	                    <tr class="headrow">
+	                        <td class="img">商品</td>
+	                        <td>型号</td> 
+	                        <td class="word">刻字内容</td>
+	                        <td class="price">市场价格</td>
+	                        <td class="price">优惠</td>
+	                        <td class="price">成交价</td>
+	                        <td class="action">操作</td>
+	                        <td class="size">全选<input id='allselect' type='checkbox' /></td>
+	                    </tr>
+
+	                    <!-- <tr class="product">
+	                        <td class="img"><img width="120" height="120" src="http://www.dionly.com/upload/image/20151023/small20151023120554.jpg" alt="" /></td>
+	                        <td><a href="/products/4514" target="_blank">相伴一生，材质：18K，镶口：45-50分 DRW124514D</a></td>
+	                        <td class="size">4</td>
+	                        <td class="word">&nbsp;</td>
+	                        <td class="price" style="text-decoration:line-through;">7653.00</td>
+	                        <td class="price">3625.00</td>
+	                        <td class="price">4028.00</td>
+	                        <td class="action"><div><a href="##" >删除</a><br/><a href="##" >修改</a></div></td>
+	                    </tr> -->
+	                </table>
+	                <div class="mainstat">
+	                    <div class="statleft">共<span id="totalcount" class="total">1</span>件商品<a href="##"  class="clear">×清空珠宝箱</a><a href="../html/goodList.html" class="gobuy">继续购物</a>
+	                    </div>
+	                    <div class="statright">
+	                        商品总金额 <span>￥</span><span id="productmoney"></span> - 优惠金额 <span>￥</span><span id="discountmoney"></span> = 订单总金额 <span>￥</span><span id="totalmoney" class="total"></span>
+	                        <span class="button"><a href="pay.html"><img src="../img/shopCar/jiesuan.jpg"  border="0"/></a></span>
+	                    </div>
+	                </div>
+	            </div>
+
+	            
+	        </div>
+	    </div>
+
+	</div>
+	<!-- 这里是尾部 -->
+	<div id="footer"></div>
+	<script type="text/javascript" src="../lib/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="../lib/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../js/common/common.js"></script>
+	<script type="text/javascript" src="../js/shopCar.js"></script>
+	<script type="text/javascript">
+		loadHtml("common/header.html","#header");
+		loadHtml("common/footer.html","#footer");
+	</script>
+</body>
+</html>

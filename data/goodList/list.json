@@ -1,0 +1,170 @@
+{
+	"g0": {
+		"goodid": 0,
+		"name": "恋爱季节 (DRW010397D)",
+		"img": "../img/goodList/list27.jpg",
+		"href": "../html/goodDetail.html",
+		"price": 2178.00,
+		"nowprice":1147.00
+	},
+	"g1": {
+		"goodid": 1,
+		"name": "爱之光（DRW124517D）",
+		"img": "../img/goodList/list16.jpg",
+		"href": "../html/goodDetail.html",
+		"price": 5746.00,
+		"nowprice":3024.00
+	},
+	"g2": {
+		"goodid": 2,
+		"name": "圆梦（DRW124516D）",
+		"img": "../img/goodList/list18.jpg",
+		"href": "##",
+		"price": 6133.00,
+		"nowprice":3228.00
+	},
+	"g3": {
+		"goodid": 3,
+		"name": "公主梦（DRW124515D）",
+		"img": "../img/goodList/list17.jpg",
+		"href": "##",
+		"price": 7653.00,
+		"nowprice":4028.00
+	},
+	"g4": {
+		"goodid": 4,
+		"name": "相伴一生（DRW124514D）",
+		"img": "../img/goodList/list19.jpg",
+		"href": "##",
+		"price": 7653.00,
+		"nowprice":4028.00
+	},
+	"g5": {
+		"goodid": 5,
+		"name": "执爱（DRW124513D）",
+		"img": "../img/goodList/list20.jpg",
+		"href": "##",
+		"price": 8398.00,
+		"nowprice":4420.00
+	},
+	"g6": {
+		"goodid": 6,
+		"name": "汇爱（DRW124512D）",
+		"img": "../img/goodList/list21.jpg",
+		"href": "##",
+		"price": 8631.00,
+		"nowprice":4542.00
+	},
+	"g7": {
+		"goodid": 7,
+		"name": "My love（DRW124511D）",
+		"img": "../img/goodList/list22.jpg",
+		"href": "##",
+		"price": 4226.00,
+		"nowprice":2224.00
+	},
+	"g8": {
+		"goodid": 8,
+		"name": "钟爱（DRW124510D）",
+		"img": "../img/goodList/list23.jpg",
+		"href": "##",
+		"price": 6977.00,
+		"nowprice":3672.00
+	},
+	"g9": {
+		"goodid": 9,
+		"name": "绽放（DRW124509D）",
+		"img": "../img/goodList/list24.jpg",
+		"href": "##",
+		"price": 4970.00,
+		"nowprice":2616.00
+	},
+	"g10": {
+		"goodid": 10,
+		"name": "纯爱（DRW124507D）",
+		"img": "../img/goodList/list25.jpg",
+		"href": "##",
+		"price": 3216.00,
+		"nowprice":1693.00
+	},
+	"g11": {
+		"goodid": 11,
+		"name": "My heart（DRW124506D）",
+		"img": "../img/goodList/list15.jpg",
+		"href": "##",
+		"price": 7266.00,
+		"nowprice":3824.00
+	},
+	"g12": {
+		"goodid": 12,
+		"name": "遇见❤缘（DRW124505D）",
+		"img": "../img/goodList/list26.jpg",
+		"href": "##",
+		"price":2997.00,
+		"nowprice":1578.00
+	},
+	"g13": {
+		"goodid": 13,
+		"name": "大气男戒（DMW124451D）",
+		"img": "../img/goodList/list10.jpg",
+		"href": "##",
+		"price": 4030.00,
+		"nowprice":2121.00
+	},
+	"g14": {
+		"goodid": 14,
+		"name": "经典六爪耳钉（DEW124448D）",
+		"img": "../img/goodList/list11.jpg",
+		"href": "##",
+		"price": 1000.00,
+		"nowprice":526.00
+	},
+	"g15": {
+		"goodid": 15,
+		"name": "睿智男戒（DMW124447D）",
+		"img": "../img/goodList/list7.jpg",
+		"href": "##",
+		"price": 3573.00,
+		"nowprice":1881.00
+	},
+	"g16": {
+		"goodid": 16,
+		"name": "儒雅男戒（DMW124445D）",
+		"img": "../img/goodList/list12.jpg",
+		"href": "##",
+		"price": 6767.00,
+		"nowprice":3562.00
+	},
+	"g17": {
+		"goodid": 17,
+		"name": "花开一世女戒（DRW124444D）",
+		"img": "../img/goodList/list6.jpg",
+		"href": "##",
+		"price": 5746.00,
+		"nowprice":3024.00
+	},
+	"g18": {
+		"goodid": 18,
+		"name": "怦然心动吊坠（DPW124441D）",
+		"img": "../img/goodList/list13.jpg",
+		"href": "##",
+		"price": 1310.00,
+		"nowprice":690.00
+	},
+	"g19": {
+		"goodid": 19,
+		"name": "一心一意耳钉（DEW124439D）",
+		"img": "../img/goodList/list9.jpg",
+		"href": "##",
+		"price": 1155.00,
+		"nowprice":608.00
+	},
+	"g20": {
+		"goodid": 20,
+		"name": "一心一意女戒（DRW124438D）",
+		"img": "../img/goodList/list8.jpg",
+		"href": "##",
+		"price": 1543.00,
+		"nowprice":812.00
+	}
+}

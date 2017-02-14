@@ -1,0 +1,401 @@
+﻿
+function selectXclassno(xclassno)
+{
+    $("#xclassno").val(xclassno);
+    ajaxProductPrice();
+}
+
+function ajaxProductPrice() {
+    var ringsize = $("#ringsize").val();
+    var xclassno = $("#xclassno").val();
+    var productid = $("#productid").html();
+    var selectzweight = 50;
+    try
+    {
+        selectzweight = $("#selectzweight").val();
+    }
+    catch (e) { }
+    var myDate = new Date();
+       var mytime = myDate.toLocaleTimeString();//获取当前时间 
+       $.ajax({
+        url: "/handler/product.ashx",
+        data: { ajax: "products", productid: productid, xclassno: xclassno, ringsize: ringsize, selectzweight: selectzweight, mytime: mytime },
+        dataType: "json",
+        success: function (json) {
+            if (json.result == 1) {
+                var arr = $("#gsmateria").children();
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].title == xclassno) {
+                        $(arr[i]).removeClass().addClass("materiaselect");
+                    } else {
+                        $(arr[i]).removeClass().addClass("materia");
+                    }
+                }
+                $("#itemmarket").html(json.marketprice);
+                $("#itemprice").html(json.userprice);
+                $("#itemgoldweight").html(json.goldweight);
+            }
+        }
+    });
+}
+function selectDuiJieXclassno(xclassno) {
+    $("#xclassno").val(xclassno);
+    ajaxDuiJieProductPrice();
+}
+function ajaxDuiJieProductPrice() {
+    var ringsize_nv = $("#ringsize_nv").val();
+    var ringsize_nan = $("#ringsize_nan").val();
+    var xclassno = $("#xclassno").val();
+    var productnvid = $("#productnvid").val();
+    var productnanid = $("#productnanid").val();
+    var selectzweight = 50;
+    try {
+        selectzweight = $("#selectzweight").val();
+    }
+    catch (e) { }
+    var myDate = new Date();
+    var mytime = myDate.toLocaleTimeString();//获取当前时间 
+    $.ajax({
+        url: "/handler/product.ashx",
+        data: { ajax: "duijieproducts", ringsize_nv: ringsize_nv, ringsize_nan: ringsize_nan, xclassno: xclassno, productnvid: productnvid, productnanid: productnanid, selectzweight: selectzweight, mytime: mytime },
+        dataType: "json",
+        success: function (json) {
+            if (json.result == 1) {
+                var arr = $("#gsmateriann").children();
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].title == json.xclassno) {
+                        $(arr[i]).removeClass().addClass("materiaselect");
+                    } else {
+                        $(arr[i]).removeClass().addClass("materia");
+                    }
+                }
+                $("#xclassno").val(json.xclassno);
+                $("#itemmarket").html(json.marketprice);
+                $("#itemprice").html(json.userprice);
+                $("#itemgoldweight").html(json.goldweight);
+                $("#item_nv_price").html(json.userprice_nv);
+                $("#item_nan_price").html(json.userprice_nan);
+            }
+        }
+    });
+}
+function AddToCartDuijie() {
+
+    var ringsize_nv = $("#ringsize_nv").val();
+    var ringsize_nan = $("#ringsize_nan").val();
+    var xclassno = $("#xclassno").val();
+    var productnvid = $("#productnvid").val();
+    var productnanid = $("#productnanid").val();
+    var carveword_nv = $("#carveword_nv").val();
+    var carveword_nan = $("#carveword_nan").val();
+    var selectzweight = 50;
+    try {
+        selectzweight = $("#selectzweight").val();
+    } catch (e) { }
+
+    tAddToCartJietuo(0, carveword_nv, ringsize_nv, xclassno, productnvid, selectzweight);
+    tAddToCartJietuo(0, carveword_nan, ringsize_nan, xclassno, productnanid, selectzweight);
+}
+
+function ajaxgetdiamon() {
+    var myDate = new Date();
+    var mytime = myDate.toLocaleTimeString();//获取当前时间 
+    $("#selectzweight").empty();//清空
+    $.ajax({
+        url: "/handler/product.ashx",
+        data: { ajax: "getdiamon", mytime: mytime },
+        dataType: "json",
+        success: function (json) {
+            if (json.result == 1) {
+                for (var i = 0; i < json.lists.length; i++) {
+                    $("#selectzweight").append("<option value='" + json.lists[i].DiamondWeight + "'>" + json.lists[i].SizeRange + "</option>");  //为Select追加一个Option(下拉项) 
+                }
+            }
+        }
+    });
+}
+
+function AddToCartJietuo(type) {
+    var carveword = $.trim($("#carveword").val());
+    var ringsize = $("#ringsize").val();
+    var xclassno = $("#xclassno").val();
+    var productid = $("#productid").html();
+    var selectzweight = $("#selectzweight").val();
+    tAddToCartJietuo(type, carveword, ringsize, xclassno, productid, selectzweight);
+}
+function tAddToCartJietuo(type, carveword, ringsize, xclassno, productid, selectzweight) {
+    var myDate = new Date();
+    var mytime = myDate.toLocaleTimeString();//获取当前时间 
+
+    if (CarveCartJietuo(carveword) > 8) {
+        $.Zebra_Dialog('<div class="ZebraAlert">输入的钻戒刻字字符过多！</div>', {
+            'type': false, 'title': '操作提示',
+            'onClose': function (caption) {
+                $("#carveword").focus();
+            }
+        });
+    } else {
+        $.ajax({
+            url: "/handler/cart.ashx",
+            data: { ajax: "jietuo", type: type, productid: productid, xclassno: xclassno, ringsize: ringsize, carveword: carveword, selectzweight: selectzweight, mytime: mytime },
+            dataType: "json",
+            success: function (json) {
+                if (json.result == 1) {
+                    if (type == 0) {
+                        window.location.href = "/cart/";
+                    } else {
+                        var selectzweight = 50;
+                        try {
+                            selectzweight = $("#selectzweight").val();
+                        } catch (e) { }
+
+                        window.location.href = "/diamond/?mincar=" + selectzweight/100 + "&maxcar=10.00";
+                    }
+                } else {
+                    $.Zebra_Dialog('<div class="ZebraAlert">加入珠宝箱失败！</div>', {
+                        'type': false, 'title': '操作提示',
+                        'onClose': function (caption) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function BindJCarouselJZoom() {
+    $(document).ready(function () {
+        $("#ui-product-zoom").jqzoom();
+        $("#ui-product-wrap").jcarousel();
+    });
+}
+function BindProductLazyLoad(eid) {
+    $(document).ready(function () {
+        $("#" + eid + " img").lazyload();
+    });
+}
+function ShowProductTabStop() {
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 800) {
+            $("#producthead").addClass("rightstop");
+        } else {
+            $("#producthead").removeClass("rightstop");
+        }
+    });
+}
+function ShowProductPosition(eid) {
+    switch (eid) {
+        case "productitem":
+            $("#productitemhead").removeClass().addClass("headselect");
+            $("#productfuwuhead").removeClass().addClass("headnormal");
+            $("#productaskshead").removeClass().addClass("headnormal");
+            break;
+        case "productfuwu":
+            $("#productitemhead").removeClass().addClass("headnormal");
+            $("#productfuwuhead").removeClass().addClass("headselect");
+            $("#productaskshead").removeClass().addClass("headnormal");
+            break;
+        case "productasks":
+            $("#productitemhead").removeClass().addClass("headnormal");
+            $("#productfuwuhead").removeClass().addClass("headnormal");
+            $("#productaskshead").removeClass().addClass("headselect");
+            break;
+    }
+    $.scrollTo('#' + eid);
+}
+function showProductPrice(type, materia) {
+    var gsmateria, zweight, ringsize;
+    if (type == "m") {
+        gsmateria = materia;
+        zweight = $("#zweight").val();
+        ringsize = $("#ringsize").val();
+    } else {
+        var span = $("#gsmateria").children();
+        for (var i = 0; i < span.length; i++) {
+            if ($(span[i]).attr("class") == "materiaselect") {
+                gsmateria = i + 2;
+                break;
+            }
+        }
+        zweight = $("#zweight").val();
+        ringsize = $("#ringsize").val();
+    }
+    $.ajax({
+        url: "/handler/product.ashx",
+        data: { ajax: "jietuo", productid: $("#productid").html(), gsmateria: gsmateria, zweight: zweight, ringsize: ringsize },
+        dataType: "json",
+        success: function (json) {
+            if (json.result == "1") {
+                var arr = $("#gsmateria").children();
+                for (var i = 0; i < arr.length; i++) {
+                    if ($(arr[i]).html() == json.gsmateria) {
+                        $(arr[i]).removeClass().addClass("materiaselect");
+                    } else {
+                        $(arr[i]).removeClass().addClass("materia");
+                    }
+                }
+                $("#productprice").html(json.initprice);
+                $("#productcost").html(json.costprice);
+                $("#itemmarket").html(json.market);
+                $("#itemprice").html(json.price);
+                $("#t_price").html(json.price);
+                $("#t_materia").html(json.gsmateria);
+                $("#t_weight").html(json.gsweight);
+                $("#t_ringsize").html(json.ringsize);
+            }
+        }
+    });
+}
+
+function CarveCartJietuo(str) {
+    var realLength = 0, len = str.length, charCode = -1;
+    for (var i = 0; i < len; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) realLength += 1;
+        else realLength += 2;
+    }
+    return realLength;
+}
+function AddToFavorJietuo() {
+    var href = "";
+    $.ajax({
+        url: "/handler/favorite.ashx",
+        data: { ajax: "post", type: 1, link: href, favorid: $("#productid").html() },
+        success: function (data) {
+            if (data == "3") {
+                ShowUserDialogLayerLogin();
+            } else if (data == "2") {
+                $.Zebra_Dialog('<div class="ZebraAlert">已经加入收藏了，请到收藏夹查看</div>', {
+                    'type': false, 'title': '操作提示', 'auto_close': 1000
+                });
+            } else if (data == "1") {
+                $.Zebra_Dialog('<div class="ZebraAlert">加入收藏成功！</div>', {
+                    'type': false, 'title': '操作提示', 'auto_close': 1000
+                });
+            } else {
+                $.Zebra_Dialog('<div class="ZebraAlert">加入收藏失败！</div>', {
+                    'type': false, 'title': '操作提示',
+                    'onClose': function (caption) {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+}
+function AddToCartCaibao() {
+    $.ajax({
+        url: "/handler/cart.ashx",
+        data: { ajax: "caibao", productid: $("#productid").html(), ringsize: $("#ringsize").val() },
+        success: function (data) {
+            if (data == "1") {
+                window.location.href = "/cart/";
+            } else {
+                $.Zebra_Dialog('<div class="ZebraAlert">加入珠宝箱失败！</div>', {
+                    'type': false, 'title': '操作提示',
+                    'onClose': function (caption) {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+}
+function AddToCartShangpinJietuo() {
+    var carveword = $.trim($("#carveword").val());
+    if (CarveCartJietuo(carveword) > 8) {
+        $.Zebra_Dialog('<div class="ZebraAlert">输入的钻戒刻字字符过多！</div>', {
+            'type': false, 'title': '操作提示',
+            'onClose': function (caption) {
+                $("#carveword").focus();
+            }
+        });
+    } else {
+        $.ajax({
+            url: "/handler/cart.ashx",
+            data: { ajax: "shangpinjietuo", productid: $("#productid").html(), materia: $("#t_materia").html(), ringsize: $("#ringsize").val(), weight: $("#t_weight").html(), cost: $("#productcost").html(), price: $("#productprice").html(), carveword: carveword },
+            success: function (data) {
+                if (data == "1") {
+                    window.location.href = "/cart/";
+                } else {
+                    $.Zebra_Dialog('<div class="ZebraAlert">加入珠宝箱失败！</div>', {
+                        'type': false, 'title': '操作提示',
+                        'onClose': function (caption) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+function AddToCartShangpinOthers() {
+    $.ajax({
+        url: "/handler/cart.ashx",
+        data: { ajax: "shangpinothers", productid: $("#productid").html(), ringsize: $("#ringsize").val() },
+        success: function (data) {
+            if (data == "1") {
+                window.location.href = "/cart/";
+            } else {
+                $.Zebra_Dialog('<div class="ZebraAlert">加入珠宝箱失败！</div>', {
+                    'type': false, 'title': '操作提示',
+                    'onClose': function (caption) {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+}
+function AddToFavorProduct() {
+    var href = "";
+    $.ajax({
+        url: "/handler/favorite.ashx",
+        data: { ajax: "post", type: 2, link: href, favorid: $("#productid").html() },
+        success: function (data) {
+            if (data == "3") {
+                ShowUserDialogLayerLogin();
+            } else if (data == "2") {
+                $.Zebra_Dialog('<div class="ZebraAlert">已经加入收藏了，请到收藏夹查看</div>', {
+                    'type': false, 'title': '操作提示', 'auto_close': 1000
+                });
+            } else if (data == "1") {
+                $.Zebra_Dialog('<div class="ZebraAlert">加入收藏成功！</div>', {
+                    'type': false, 'title': '操作提示', 'auto_close': 1000
+                });
+            } else {
+                $.Zebra_Dialog('<div class="ZebraAlert">加入收藏失败！</div>', {
+                    'type': false, 'title': '操作提示',
+                    'onClose': function (caption) {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+    });
+}

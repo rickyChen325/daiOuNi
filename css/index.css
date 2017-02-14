@@ -1,0 +1,220 @@
+.banner_bigBox{width: 100%;height: 420px;}
+.banner_box{margin: 0 auto;width: 1260px;height: 420px;position:relative;
+	overflow: hidden;}
+/*.banner{margin: 0 auto;width: 1260px;height: 420px;position:relative;overflow: hidden;}*/
+/*#container{width:605px; height:284px; border:1px solid black; position:
+	relative; margin:100px auto; overflow:hidden;}*/
+.banner {height:420px; position:absolute; top:0; left:0;}
+.banner li { width:1260px; height:420px; float:left; cursor: pointer}
+.banner_nav {width:100%; height:20px; padding:5px 0; position:absolute; 
+	bottom:0; background:black;}
+.banner_nav div {width:20px; height:20px; border-radius:10px; 
+	background:white; margin-left:10px; float:left; cursor: pointer;}
+.banner_nav div.active {background:red;}
+.banner_prev, .banner_next {width:50px; height:50px; position:absolute; 
+	top:0; bottom:0; margin:auto 0; background:black; 
+	cursor: pointer; font:50px/50px "宋体"; 
+	color:white; text-align: center; opacity: 0.4;}
+.banner_next {right:0px;}
+
+.box1_big{width: 100%;height: 210px;}
+.box1{margin: 0 auto;width: 1180px;height: 210px;margin-top: 15px;}
+.box1_left{float: left;padding: 4px; width: 310px;height: 200px;line-height: 22px;
+ text-align: center;border: 1px solid #DDDDDD;overflow: hidden;}
+.box1_center{float: left;margin-left: 15px;padding: 4px;width: 500px;height: 200px;
+ line-height: 22px;text-align: center;border: 1px solid #DDDDDD;overflow: hidden;}
+.box1_right{float: left;margin-left: 15px;padding: 4px;width: 310px;height: 200px;
+line-height: 22px;text-align: center;border: 1px solid #DDDDDD;overflow: hidden;}
+
+.box2_big{width: 100%;}
+.box2{clear: both;margin: 0 auto; width: 1180px;height: 159px;background: #FFFFFF;
+ overflow: hidden;border: 1px solid #dddddd;margin-top: 15px;}
+.box2_left{width: 616px;height: 159px;float: left;background-color: #f9f9f9;}
+.box2_left img{margin-top: 20px;margin-left: 15px; background-color: #f9f9f9;}
+.box2_right{width: 562px;height: 159px;float: left;
+	background: url(../img/index/box2rightbg.png);}
+.box2_right .inputvalue{margin-top: 20px;float: left;width: 215px;height: 33px;}
+.box2_right .inputvalue .inputcss{float:left;width:50px;height:33px;margin-left:70px;margin-top:5px;}
+.box2_right .inputvalue .inputcss .searchinputcss{width:40px;height:15px;}
+.box2_right .inputvalue .rightinputcss{float:left;width:50px;height:33px;margin-top:5px;}
+.box2_right .inputvalue .rightinputcss .searchinputcss{width:40px;height:15px;}
+.box2_right .inputvalue .inputline{float:left;width:20px;height:33px;line-height: 30px;}
+.box2_right .inputvalue .inputtxt{height:33px;line-height: 30px;}
+.box2_right .selectitem { float: left; margin-left: 70px; margin-top: 13px;height:33px;}
+.box2_right .selectitem .imgs {cursor:pointer; float: left; padding: 0 3px; height: 24px;}
+.box2_right .selectitem .imgs img { margin-top: 3px; }
+.box2_right .selectitembtn { float: left; margin-left: 370px; margin-top: 5px;height:33px;}
+.box2_right .selectitembtn .imgs {cursor:pointer;}
+
+.box3_big{width: 100%}
+.box3 { clear: both; margin: 0 auto; width: 1180px; height: 429px;
+ background: #FFFFFF; overflow: hidden;margin-top: 15px; }
+.box3 .left { float: left; width: 321px; height: 429px; 
+	background: url(../img/index/box31.jpg); overflow: hidden; }
+.box3 .center { float: left; width: 259px; height: 429px; 
+	overflow: hidden; }
+.box3 .right { float: left; width: 600px; height: 429px; overflow: hidden; }
+.box3 .righttop { float: left; width: 600px; height: 211px; 
+	overflow: hidden; }
+.box3 .righttopleft { float: left; width: 299px; height: 211px; 
+	overflow: hidden; }
+.box3 .righttopright { float: left; width: 301px; height: 211px; 
+	overflow: hidden; }
+.box3 .rightbottom { float: left; width: 600px; height: 218px; 
+	overflow: hidden; }
+.box3 .rightbottomleft { float: left; width: 200px; height: 218px; 
+	overflow: hidden; }
+.box3 .rightbottomcenter { float: left; width: 195px; height: 218px; 
+	overflow: hidden; }
+.box3 .rightbottomright { float: left; width: 205px; height: 218px; 
+	overflow: hidden; }
+
+.box4{width: 100%}
+.box4 { clear: both; margin: 0 auto; width: 1180px; height: 116px;
+ background: #FFFFFF; overflow: hidden; margin-top: 15px;}
+.box4 div { float: left; }
+
+.box5_big{width: 100%}
+.box5 { clear: both; margin: 0 auto; width: 1180px; height: 429px;
+ background: #FFFFFF; overflow: hidden;margin-top: 15px; }
+.box5 .left { float: left; width: 321px; height: 429px; 
+	background: url(../img/index/box31.jpg); overflow: hidden; }
+.box5 .center { float: left; width: 259px; height: 429px; 
+	overflow: hidden; }
+.box5 .right { float: left; width: 600px; height: 429px; overflow: hidden; }
+.box5 .righttop { float: left; width: 600px; height: 211px; 
+	overflow: hidden; }
+.box5 .righttopleft { float: left; width: 299px; height: 211px; 
+	overflow: hidden; }
+.box5 .righttopright { float: left; width: 301px; height: 211px; 
+	overflow: hidden; }
+.box5 .rightbottom { float: left; width: 600px; height: 218px; 
+	overflow: hidden; }
+.box5 .rightbottomleft { float: left; width: 200px; height: 218px; 
+	overflow: hidden; }
+.box5 .rightbottomcenter { float: left; width: 195px; height: 218px; 
+	overflow: hidden; }
+.box5 .rightbottomright { float: left; width: 205px; height: 218px; 
+	overflow: hidden; }
+
+.box6_big{width: 100%}
+.box6 { clear: both; margin: 0 auto; width: 1180px; height: 429px;
+ background: #FFFFFF; overflow: hidden;margin-top: 15px; }
+.box6 .left { float: left; width: 321px; height: 429px; 
+	background: url(../img/index/box31.jpg); overflow: hidden; }
+.box6 .center { float: left; width: 259px; height: 429px; 
+	overflow: hidden; }
+.box6 .right { float: left; width: 600px; height: 429px; overflow: hidden; }
+.box6 .righttop { float: left; width: 600px; height: 211px; 
+	overflow: hidden; }
+.box6 .righttopleft { float: left; width: 299px; height: 211px; 
+	overflow: hidden; }
+.box6 .righttopright { float: left; width: 301px; height: 211px; 
+	overflow: hidden; }
+.box6 .rightbottom { float: left; width: 600px; height: 218px; 
+	overflow: hidden; }
+.box6 .rightbottomleft { float: left; width: 200px; height: 218px; 
+	overflow: hidden; }
+.box6 .rightbottomcenter { float: left; width: 195px; height: 218px; 
+	overflow: hidden; }
+.box6 .rightbottomright { float: left; width: 205px; height: 218px; 
+	overflow: hidden; }
+
+/*.box7_big{width: 100%}*/
+.box7{margin: 0 auto;width: 1180px;height: 116px;background: #FFFFFF;
+    overflow: hidden;margin-top: 15px;}
+
+.box8_big{width: 100%}
+.box8 { clear: both; margin: 0 auto; width: 1180px; height: 429px;
+ background: #FFFFFF; overflow: hidden;margin-top: 15px; }
+.box8 .left { float: left; width: 321px; height: 429px; 
+	background: url(../img/index/box31.jpg); overflow: hidden; }
+.box8 .center { float: left; width: 259px; height: 429px; 
+	overflow: hidden; }
+.box8 .right { float: left; width: 600px; height: 429px; overflow: hidden; }
+.box8 .righttop { float: left; width: 600px; height: 211px; 
+	overflow: hidden; }
+.box8 .righttopleft { float: left; width: 299px; height: 211px; 
+	overflow: hidden; }
+.box8 .righttopright { float: left; width: 301px; height: 211px; 
+	overflow: hidden; }
+.box8 .rightbottom { float: left; width: 600px; height: 218px; 
+	overflow: hidden; }
+.box8 .rightbottomleft { float: left; width: 200px; height: 218px; 
+	overflow: hidden; }
+.box8 .rightbottomcenter { float: left; width: 195px; height: 218px; 
+	overflow: hidden; }
+.box8 .rightbottomright { float: left; width: 205px; height: 218px; 
+	overflow: hidden; }
+
+.box9_big{width: 100%}
+.box9 { clear: both; margin: 0 auto; width: 1180px; height: 429px;
+ background: #FFFFFF; overflow: hidden;margin-top: 15px; }
+.box9 .left { float: left; width: 321px; height: 429px; 
+	background: url(../img/index/box31.jpg); overflow: hidden; }
+.box9 .center { float: left; width: 259px; height: 429px; 
+	overflow: hidden; }
+.box9 .right { float: left; width: 600px; height: 429px; overflow: hidden; }
+.box9 .righttop { float: left; width: 600px; height: 211px; 
+	overflow: hidden; }
+.box9 .righttopleft { float: left; width: 299px; height: 211px; 
+	overflow: hidden; }
+.box9 .righttopright { float: left; width: 301px; height: 211px; 
+	overflow: hidden; }
+.box9 .rightbottom { float: left; width: 600px; height: 218px; 
+	overflow: hidden; }
+.box9 .rightbottomleft { float: left; width: 200px; height: 218px; 
+	overflow: hidden; }
+.box9 .rightbottomcenter { float: left; width: 195px; height: 218px; 
+	overflow: hidden; }
+.box9 .rightbottomright { float: left; width: 205px; height: 218px; 
+	overflow: hidden; }
+
+.box10_big{width: 100%}
+.box10 { clear: both; margin: 0 auto; width: 1180px; height: 290px;
+ background: #FFFFFF; overflow: hidden; margin-top: 15px;}
+.box10 .linewrap { float: left; margin-right: 10px; width: 320px; 
+	height: 288px; border: 1px solid #E3E3E3; }
+.box10 .linewrap .wraphead { float: left; width: 320px; height: 33px; 
+	line-height: 33px; text-indent: 15px; font-weight: bold; 
+	background: url(../img/index/box10headbg.jpg); }
+.box10 .linewrap .wrapmain { float: left; padding: 5px; width: 310px; 
+	height: 245px; }
+.box10 .linewrap .wrapmain .mainimg { float: left; width: 310px; height: 95px; }
+.box10 .linewrap .wrapmain .maintext { float: left; margin-top: 10px;
+ width: 310px; height: 135px; }
+.box10 .linewrap .wrapmain .maintext div { float: left; padding-left: 10px; 
+	width: 300px; height: 27px; line-height: 27px; }
+.box10 .lineads { float: left; width: 184px; height: 290px; }
+
+.line {clear: both; margin: 0 auto;width: 1180px;height: 18px;
+	background: url(../img/index/line.jpg);
+}
+
+.homeimgs { float: left; width: 320px; height: 180px; }
+.hometype { float: left; padding: 12px 0 5px 0; width: 200px; height: 120px; }
+.hometype div { float: left; width: 200px; height: 24px; 
+	line-height: 24px; text-indent: 30px; }
+.homeprice { float: left; width: 200px; height: 100px; }
+.homeprice div { float: left; width: 200px; height: 24px; 
+	line-height: 24px; text-indent: 30px; }
+
+.loutiNav{width: 50px;position: fixed;top: 25%;right: 40px;
+border: 1px solid #000;left: 50%;margin-left:550px; }
+.loutiNav ul li{width: 50px;height: 50px;position: relative;
+text-align: center;line-height: 50px;list-style: none;cursor: pointer;
+font-size: 12px;border-bottom: 1px dotted #aaa;}
+.loutiNav ul li span{width: 50px;height: 50px;position: absolute;
+left: 0;top: 0;color: #fff;background: darkred;}
+.loutiNav ul li:hover span{display: block;color: #fff;
+background: darkred;opacity:0.8;}
+.loutiNav ul li span.active{display: block;color: red;background: #fff;}
+
+.loutiNav .back{width: 50px;height: 50px;position: relative;
+text-align: center;line-height: 50px;list-style: none;cursor: pointer;
+font-size: 12px;border-bottom: 1px dotted #aaa;}
+.loutiNav .back span{width: 50px;height: 50px;position: absolute;
+left: 0;top: 0;color: #fff;background: darkred;}
+.loutiNav .back:hover span{display: block;color: #fff;
+background: darkred;opacity:0.8;}
+
